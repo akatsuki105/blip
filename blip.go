@@ -46,8 +46,8 @@ func (b *Blip) SamplesAvail() int {
 }
 
 // blip_read_samples
-func (b *Blip) ReadSamples(out []uint16, count, stereo int) int {
-	return int(C.blip_read_samples((*C.struct_blip_t)(b), (*C.short)(unsafe.Pointer(&out[0])), C.int(count), C.int(stereo)))
+func (b *Blip) ReadSamples(out unsafe.Pointer, count, stereo int) int {
+	return int(C.blip_read_samples((*C.struct_blip_t)(b), (*C.short)(out), C.int(count), C.int(stereo)))
 }
 
 // blip_add_delta
